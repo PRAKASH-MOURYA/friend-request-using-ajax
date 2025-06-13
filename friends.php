@@ -13,7 +13,7 @@ if (!isset($_SESSION['user_id'])) {
 $friendRequest = new FriendRequest($pdo);
 $currentUserId = $_SESSION['user_id'];
 
-// Handle friend request actions
+// handle friend request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
         switch ($_POST['action']) {
@@ -36,16 +36,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Get search results if search term is provided
+
 $searchResults = [];
 if (isset($_GET['search']) && !empty($_GET['search'])) {
     $searchResults = $friendRequest->searchUsers($_GET['search'], $currentUserId);
 }
 
-// Get pending friend requests
+
 $pendingRequests = $friendRequest->getFriendRequests($currentUserId);
 
-// Get friends list
+
 $friendsList = $friendRequest->getFriendsList($currentUserId);
 ?>
 
@@ -60,8 +60,7 @@ $friendsList = $friendRequest->getFriendsList($currentUserId);
 <body>
     <div class="container mt-4">
         <h2>Friend Management</h2>
-        
-        <!-- Search Form -->
+ 
         <form class="mb-4" method="GET">
             <div class="input-group">
                 <input type="text" name="search" class="form-control" placeholder="Search users..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
@@ -69,7 +68,6 @@ $friendsList = $friendRequest->getFriendsList($currentUserId);
             </div>
         </form>
 
-        <!-- Search Results -->
         <?php if (!empty($searchResults)): ?>
         <div class="card mb-4">
             <div class="card-header">Search Results</div>
@@ -91,7 +89,6 @@ $friendsList = $friendRequest->getFriendsList($currentUserId);
         </div>
         <?php endif; ?>
 
-        <!-- Pending Requests -->
         <?php if (!empty($pendingRequests)): ?>
         <div class="card mb-4">
             <div class="card-header">Pending Friend Requests</div>
@@ -120,7 +117,6 @@ $friendsList = $friendRequest->getFriendsList($currentUserId);
         </div>
         <?php endif; ?>
 
-        <!-- Friends List -->
         <div class="card">
             <div class="card-header">Friends List</div>
             <div class="card-body">
