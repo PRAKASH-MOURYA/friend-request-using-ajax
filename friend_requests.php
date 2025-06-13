@@ -8,7 +8,7 @@ class FriendRequest {
         $this->pdo = $pdo;
     }
 
-    // Search users
+    
     public function searchUsers($searchTerm, $currentUserId) {
         $stmt = $this->pdo->prepare("
             SELECT u.id, u.username, u.email 
@@ -50,7 +50,6 @@ class FriendRequest {
         }
     }
 
-    // Accept friend request
     public function acceptRequest($requestId, $receiverId) {
         $stmt = $this->pdo->prepare("
             UPDATE friend_requests 
@@ -76,7 +75,6 @@ class FriendRequest {
         return $stmt->execute();
     }
 
-    // Get friend requests
     public function getFriendRequests($userId) {
         $stmt = $this->pdo->prepare("
             SELECT fr.*, u.username, u.email
@@ -90,7 +88,6 @@ class FriendRequest {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Get friends list
     public function getFriendsList($userId) {
         $stmt = $this->pdo->prepare("
             SELECT u.id, u.username, u.email
