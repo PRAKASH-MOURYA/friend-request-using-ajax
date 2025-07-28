@@ -18,7 +18,6 @@ This project implements a simple **friend request feature** using **AJAX**, simu
 
 ## 📸 Preview
 
-> *(You can add a screenshot here)*
 
 ```html
 [ Send Request ] → [ Request Sent ] → [ Cancel Request ]
